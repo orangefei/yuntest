@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginxdeploy
+  template:
+    metadata:
+      labels:
+        name: nginxdeploy
+    spec:
+      containers:
+      - name: nginx-cluster
+        image: registry.cn-hangzhou.aliyuncs.com/xrf/testhost:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 1
+            memory: 500Mi
+          limits:
+            cpu: 2
+            memory: 1024Mi
+
+
+
+

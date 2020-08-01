@@ -1,0 +1,27 @@
+
+
+    kind: Deployment
+    metadata:
+    name: nginx-deploy
+    spec:
+    replicas: 1 #pod副本期待数量
+    template: #根据此模板创建pod的副本（实例）
+    metadata:
+    labels:
+    app: nginx-cluster #标签名称
+    spec:
+    containers: #pod容器的定义部分
+
+        name: nginx-cluster #容器名称
+        image: nginx #容器镜像
+        ports:
+            containerPort: 80 #容器应用监控的端口号
+            resources:
+            requests:
+            cpu: 1 #指定cpu数量
+            memory: 500Mi #指定内存数量
+            limits:
+            cpu: 2
+            memory: 1024Mi
+
+
